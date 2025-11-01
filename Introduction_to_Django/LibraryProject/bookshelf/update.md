@@ -1,1 +1,1 @@
-book = Book.title(Nineteen Eighty-Four)
+book = book.title(Nineteen Eighty-Four)
