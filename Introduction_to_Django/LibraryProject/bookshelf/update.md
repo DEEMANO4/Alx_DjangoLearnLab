@@ -1,1 +1,1 @@
-import
+book = Book.title(Nineteen Eighty-Four)
