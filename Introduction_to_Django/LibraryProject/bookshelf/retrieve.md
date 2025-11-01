@@ -1,1 +1,1 @@
-import
+books = Books.objects.get(title="1984")
