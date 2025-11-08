@@ -1,8 +1,16 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView 
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 from relationship_app.models import Book
 from .models import Library
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.urls import path
+
+urlpatterns = [
+    path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
+]
 
 # Create your views here.
 def list_books(request):
