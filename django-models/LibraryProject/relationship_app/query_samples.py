@@ -7,4 +7,4 @@ books =Library.books.all()
 author = Author.objects.get(name='author_name')
 Author.objects.filter(author=author)
 
-"Librarian.object.get(library=)"
+"Librarian.object.get(library="
