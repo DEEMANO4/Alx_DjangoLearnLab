@@ -11,7 +11,7 @@ def list_books(request):
     return render(request,'relationship_app/list_books.html', context)
 
 class LibraryTemplateView(TemplateView):
-    template_name = 'library_detail.html'
+    template_name = 'relationship_app/library_detail.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['my_data'] = 'Another example'
@@ -20,7 +20,7 @@ class LibraryTemplateView(TemplateView):
 
 class LibraryDetailView(DetailView):
     model = Library
-    template_name = 'library_detail.html'
+    template_name = 'relationship_app/library_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
