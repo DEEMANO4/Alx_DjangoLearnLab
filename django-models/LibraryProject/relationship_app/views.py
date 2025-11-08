@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic.detail import DetailView
+from django.views.generic.detail import DetailView 
+from django.views.generic import TemplateView
 from relationship_app.models import Book
 from .models import Library
 
@@ -7,12 +8,19 @@ from .models import Library
 def list_books(request):
     books = Book.objects.all()
     context = {'list_books': books}
-    return render(request,'relationship_app/list_books.html', context)
+    return render(request,'list_books.html', context)
+
+class LibraryTemplateView(TemplateView):
+    template_name = 'library_detail.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['my_data'] = 'Another example'
+
 
 
 class LibraryDetailView(DetailView):
     model = Library
-    template_name = 'relationship_app/library_detail.html'
+    template_name = 'library_detail.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
