@@ -18,7 +18,7 @@ urlpatterns = [
 # Create your views here.
 def list_books(request):
     books = Book.objects.all()
-    context = {'list_books': books}
+    context = {'books': books}
     return render(request,'relationship_app/list_books.html', context)
 
 class LibraryTemplateView(TemplateView):
@@ -32,11 +32,14 @@ class LibraryTemplateView(TemplateView):
 class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
-
+    context_object_name = 'library'  # This makes {{ library }} available in template
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        book = self.get_object()
-        context['average_rating'] = book.get_average_rating()
+        library = self.get_object()  # Gets the Library object
+        # Add any extra context if needed
+        context['total_books'] = library.books.count()
+        return context
 
 class register(CreateView):
     form_class = UserCreationForm
