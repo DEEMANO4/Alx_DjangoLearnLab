@@ -6,7 +6,9 @@ from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('list_books/', views.list_books, name='list_books'),
+   # path('list_books/', views.list_books, name='list_books'),
+    path('books/', list_books, name='list_books'),
+    path('library/<int:pk>/', LibraryDetailView.as_view(), name='library_detail'),
     path('library/', views.LibraryDetailView.as_view(), name='library_books'),
     path('library-template', views.LibraryTemplateView.as_view(), name='library_page'),
     path('register/', views.register, name='registration'),

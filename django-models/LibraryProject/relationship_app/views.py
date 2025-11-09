@@ -20,24 +20,22 @@ def list_books(request):
     return render(request,'relationship_app/list_books.html', context)
 
 class LibraryTemplateView(TemplateView):
-    template_name = 'relationship_app/library_detail.html'
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['my_data'] = 'Another example'
-
-
-
-class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
-    context_object_name = 'library'  # This makes {{ library }} available in template
+    context_object_name = 'library'
+
+
+#class LibraryDetailView(DetailView):
+    #model = Library
+    #template_name = 'relationship_app/library_detail.html'
+    #context_object_name = 'library'  # This makes {{ library }} available in template
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        library = self.get_object()  # Gets the Library object
-        # Add any extra context if needed
-        context['total_books'] = library.books.count()
-        return context
+    #def get_context_data(self, **kwargs):
+    #    context = super().get_context_data(**kwargs)
+    #    library = self.get_object()  # Gets the Library object
+    #    # Add any extra context if needed
+    #    context['total_books'] = library.books.count()
+    #    return context
 
 class register(CreateView):
     form_class = UserCreationForm
