@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.detail import DetailView 
 from django.views.generic import TemplateView, CreateView
 from relationship_app.models import Book
@@ -69,3 +69,13 @@ def librarian_view(request):
 @user_passes_test(is_member)
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')
+
+@permission_required('relationship_app.can_add_book')
+def add_book(request):
+    return render(request,'relationship_app/can_add_book.html' )
+@permission_required('relationship_app.can_change_book')
+def change_book(request):
+    return render(request, 'relationship_add/can_change_book.html')
+@permission_required('relationship_app.can_delete_book')
+def delete_book(request):
+    return render(request, 'relationship_app/can_delete_book')
