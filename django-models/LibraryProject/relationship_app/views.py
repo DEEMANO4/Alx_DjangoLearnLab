@@ -38,5 +38,5 @@ class LibraryDetailView(DetailView):
 
 class register(CreateView):
     form_class = UserCreationForm
-    success_url = reverse_lazy('register')
-    template_name = '.html'
+    success_url = reverse_lazy('registration_complete')
+    template_name = 'register.html'
