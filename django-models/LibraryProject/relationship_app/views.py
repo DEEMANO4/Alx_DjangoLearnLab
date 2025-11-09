@@ -43,16 +43,29 @@ class register(CreateView):
     template_name = 'register.html'
 
 
+def is_admin(user):
+    return user.is_superuser or user.groups.filter(name='admin').exists()
+
+def is_librarian(user):
+    return user.groups.filter(name='librarian').exists()
+
+def is_member(user):
+    return user.groups.filter(name='member').exists()
+
+
+
 @login_required
-@user_passes_test(lambda u: u.groups.filter(name='Admins').exists())
+@user_passes_test(is_admin)
 def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
 @login_required
+@user_passes_test(is_librarian)
 @permission_required('relationship_app.can_manage_books')
 def librarian_view(request):
     return render(request, 'relationship_app/librarian_view.html')
 
 @login_required
+@user_passes_test(is_member)
 def member_view(request):
     return render(request, 'relationship_app/member_view.html')

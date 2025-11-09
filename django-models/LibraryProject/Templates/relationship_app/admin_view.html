@@ -1,0 +1,13 @@
+<!-- templates/admin/dashboard.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Admin Dashboard</h1>
+    <p>Welcome, {{ user.username }}! You have full access to all system features.</p>
+
+    <ul>
+        <li><a href="#">Manage All Users</a></li>
+        <li><a href="#">Manage All Books</a></li>
+        <li><a href="#">System Settings</a></li>
+    </ul>
+{% endblock %}

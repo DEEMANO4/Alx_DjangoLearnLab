@@ -1,0 +1,13 @@
+<!-- templates/librarian/dashboard.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Librarian Dashboard</h1>
+    <p>Welcome, {{ user.username }}! You can manage books and members.</p>
+
+    <ul>
+        <li><a href="#">Add New Books</a></li>
+        <li><a href="#">View All Members</a></li>
+        <li><a href="#">Manage Checkouts</a></li>
+    </ul>
+{% endblock %}
