@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.detail import DetailView 
 from django.views.generic import TemplateView, CreateView
-from relationship_app.models import Book
+from .models import Book
 from .models import Library
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login, logout
