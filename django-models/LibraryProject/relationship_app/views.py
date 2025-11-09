@@ -6,6 +6,7 @@ from .models import Library
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
 from django.urls import reverse_lazy
 from django.urls import path
 
@@ -40,3 +41,18 @@ class register(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('registration_complete')
     template_name = 'register.html'
+
+
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='Admins').exists())
+def admin_view(request):
+    return render(request, 'relationship_app/admin_view.html')
+
+@login_required
+@permission_required('relationship_app.can_manage_books')
+def librarian_view(request):
+    return render(request, 'relationship_app/librarian_view.html')
+
+@login_required
+def member_view(request):
+    return render(request, 'relationship_app/member_view.html')
