@@ -11,9 +11,7 @@ from django.contrib.auth.decorators import permission_required
 from django.urls import reverse_lazy
 from django.urls import path
 
-urlpatterns = [
-    path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
-]
+#
 
 # Create your views here.
 def list_books(request):
