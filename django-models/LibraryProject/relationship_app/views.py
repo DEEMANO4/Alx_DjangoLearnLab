@@ -10,7 +10,7 @@ from django.urls import reverse_lazy
 from django.urls import path
 
 urlpatterns = [
-    path('login/', LoginView.as_view(template_name='registration/login.html'), name='login'),
+    path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
 ]
 
 # Create your views here.
@@ -38,5 +38,5 @@ class LibraryDetailView(DetailView):
 
 class register(CreateView):
     form_class = UserCreationForm
-    success_url = reverse_lazy('login')
-    template_name = 'registration/signup.html'
+    success_url = reverse_lazy('register')
+    template_name = '.html'
