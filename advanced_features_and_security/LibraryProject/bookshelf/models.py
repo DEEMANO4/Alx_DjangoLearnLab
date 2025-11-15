@@ -17,7 +17,8 @@ class CustomUser(AbstractUser):
 
     class Meta:
         permissions = (
-            ('can_view', 'can_create', 'can_edit', 'can_delete')
+            ('can_view', 'can_create', 'can_edit', 'can_delete'
+            '')
         )
 
 
@@ -28,7 +29,7 @@ class CustomUserManager(BaseUserManager):
         return user
     
     def create_superuser(self, date_of_birth, profile_photo):
-        return super().create_superuser(date_of_birth,profile_photo)
+        return super().creat_superuser(date_of_birth,profile_photo)
 
     def __str__(self):
         return self.username
