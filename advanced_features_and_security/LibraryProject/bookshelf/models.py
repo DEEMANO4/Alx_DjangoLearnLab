@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from .managers import CustomUserManager
+from django.contrib.auth.models import BaseUserManager
 
 # Create your models here.
 class Book(models.Model):
@@ -13,5 +14,16 @@ class CustomUser(AbstractUser):
     profile_photo = models.ImageField(upload_to='images', null=True, blank=True)
 
     objects = CustomUserManager()
+
+
+class CustomUserManager(BaseUserManager):
+    def create_user(self, date_of_birth, profile_photo):
+        user = self.model(date_of_birth=date_of_birth, profile_photo=profile_photo)
+        user.save(using=self._db)
+        return user
+    
+    def create_superuser(self, date_of_birth, profile_photo):
+        return super().create_superuser(date_of_birth,profile_photo)
+
     def __str__(self):
         return self.username
