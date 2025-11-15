@@ -15,6 +15,11 @@ class CustomUser(AbstractUser):
 
     objects = CustomUserManager()
 
+    class Meta:
+        permissions = (
+            ('can_view', 'can_create', 'can_edit', 'can_delete')
+        )
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, date_of_birth, profile_photo):
