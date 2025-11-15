@@ -1,0 +1,13 @@
+<!-- templates/member/dashboard.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Member Dashboard</h1>
+    <p>Welcome, {{ user.username }}! Check out your current loans.</p>
+
+    <ul>
+        <li><a href="#">Browse Books</a></li>
+        <li><a href="#">My Profile</a></li>
+        <li><a href="#">My Loans</a></li>
+    </ul>
+{% endblock %}
