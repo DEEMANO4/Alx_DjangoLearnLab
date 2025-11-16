@@ -11,7 +11,7 @@ urlpatterns = [
     path('library/<int:pk>/', views.LibraryDetailView.as_view(), name='library_detail'),
     #path('library/', views.LibraryDetailView.as_view(), name='library_books'),
     #path('library-template', views.LibraryTemplateView.as_view(), name='library_page'),
-    path('register/', views.register, name='registration'),
+    path('register/', views.register.as_view(), name='registration'),
     path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name= 'logout'),
     path('Admin', views.admin_view, name='admin_view'),
@@ -20,4 +20,4 @@ urlpatterns = [
     # path('add_book/'),
     # path('edit_book/'),
     # path('delete_book/')
-    ]
+]
