@@ -4,7 +4,9 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticate
 from rest_framework.views import APIView
 from rest_framework import permissions, filters
 from rest_framework.response import Response
-from rest_framework import viewsets, generics
+from rest_framework import viewsets
+from rest_framework import generics
+from django_filters import rest_framework
 from django_filters.rest_framework import DjangoFilterBackend
 from .serializers import BookSerializer
 from .models import Book
