@@ -1,0 +1,16 @@
+<!-- templates/accounts/profile.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>User Profile: {{ user.username }}</h2>
+    <div class="profile-details">
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>First Name:</strong> {{ user.first_name }}</p>
+        <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+<!-- Add more profile-specific fields here if you have a custom model -->
+    </div>
+    <a href="{% url 'edit_profile' %}">Edit Profile</a>
+</div>
+{% endblock %}
