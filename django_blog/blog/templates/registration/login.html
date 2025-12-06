@@ -1,0 +1,15 @@
+<!-- templates/registration/login.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content  %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<div class="lpgin-container">
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
+</div>
+{% endblock %}
