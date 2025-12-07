@@ -31,7 +31,7 @@ class PostForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('name', 'email')
+        fields = ['content',]
 
     def clean_name(self):
         name = self.cleaned_data['name']

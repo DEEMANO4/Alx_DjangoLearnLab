@@ -8,6 +8,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     published_date = models.DateTimeField(auto_now_add=True)
+    # tags = models.ManyToManyField(Tag, related_name='pposts', blank=True)
 
     def __str__(self):
         return self.title
@@ -24,8 +25,15 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
-        ordering = ['created_on']
+    # class Meta:
+    #     ordering = ['created_on']
 
     def __str__(self):
         return f"Comment by {self.author} pm {self.post.title}"
+    
+class Tag(models.Model):
+    name = models.CharField(max_length=200)
+    posts = models.ManyToManyField(Post, related_name='posts', blank=True)
+    
+    def __str__(self):
+        return self.name
