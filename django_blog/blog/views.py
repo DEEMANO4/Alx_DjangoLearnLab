@@ -168,9 +168,7 @@ def search_results(request):
 
     if query:
         posts = Post.objects.filter(
-            Q(title_icontains=query) |
-            Q(content_icontains=query) |
-            Q(tags_name_icontains=query)
+            Q(title_icontains=query) | Q(content_icontains=query) | Q(tags_name_icontains=query)
         ).distinct()
 
     context = {
