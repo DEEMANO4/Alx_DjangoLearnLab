@@ -117,7 +117,7 @@ def post_detail(request, pk):
             'comment_form': comment_form
         })
     
-class CommentUpdateView(LoginRequiredMixin, CreateView):
+class CommentCreateView(LoginRequiredMixin, CreateView):
     model = Comment
     form_class = CommentForm
     template_name = 'blog/post_detail.html'
