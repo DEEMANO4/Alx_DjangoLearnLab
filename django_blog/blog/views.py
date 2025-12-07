@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from .forms import PostForm
 from .forms import PostRegistrationForm
@@ -115,6 +116,26 @@ def post_detail(request, pk):
             'new_comment': new_comment,
             'comment_form': comment_form
         })
+    
+class CommentUpdateView(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'blog/post_detail.html'
+
+    def form_valid(self, form):
+        post_pk = self.kwargs['pk']
+        post = get_object_or_404(Post, pk=post_pk)
+
+        form.instance.post = post
+        form.instance.name = self.request.user.username
+        form.instance.email = self.request.user.email
+
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('post_detail', kwargs={'pk': self.kwargs['pk']})
+
+
     
 class CommentUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Comment
