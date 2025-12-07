@@ -167,7 +167,7 @@ def search_results(request):
     posts = Post.objects.all()
 
     if query:
-        posts = posts.filter(
+        posts = Post.objects.filter(
             Q(title_icontains=query) |
             Q(content_icontains=query) |
             Q(tags_name_icontains=query)
