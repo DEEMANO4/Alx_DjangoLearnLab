@@ -8,6 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Comment
 from .forms import CommentForm
+from django.db.models import Q
 
 # Create your views here.
 
@@ -159,3 +160,21 @@ class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         comment = self.get_object()
         return comment.name == self.request.user.username or self.request.user.is_superuser
+    
+
+def search_results(request):
+    query = request.GET.get('q')
+    posts = Post.objects.all()
+
+    if query:
+        posts = posts.filter(
+            Q(title_icontains=query) |
+            Q(content_icontains=query) |
+            Q(tags_name_icontains=query)
+        ).distinct()
+
+    context = {
+        'query': query,
+        'posts': posts,
+    }
+    return render(request, 'search_results.html', context)
