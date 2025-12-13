@@ -6,7 +6,7 @@ from rest_framework import viewsets, permissions
 
 # Create your views here.
 
-class PostViewSet(Viewsets.ModelViewSet):
+class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly]
@@ -24,7 +24,7 @@ class CommentViewSet(viewsets.ModelViewSet):
         return Comment.objects.all()
 
     def perform_create(self, serializer):
-        post Post.objects.get(pk=self.kwargs['post_pk'])
+        post = Post.objects.get(pk=self.kwargs['post_pk'])
         serializer.save(author=self.request.user, post=post)
 
 
