@@ -12,7 +12,7 @@ class UserSerialzer(serializers.ModelSerializer):
         read_only_fields = ('username', 'email')
 
 class UserRegistrationSerializer(serialzers.ModelSerializer):
-    password2 = serializers.Charfield(style={'input_type' :'password'}, write_only=True)
+    password2 = serializers.CharField(style={'input_type' :'password'}, write_only=True)
     
 
     class Meta:
