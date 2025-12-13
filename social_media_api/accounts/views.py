@@ -6,9 +6,12 @@ from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User
-from .serialzers import UserRegistrationSerializer, UserSerialzer, LoginSerializer
+from django.contrib.auth import get_user_model
+from .serializers import UserRegistrationSerializer, UserSerialzer, LoginSerializer
+# from django.conf import settings
 
 # Create your views here.
+User = get_user_model()
 
 class UserRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -44,7 +47,7 @@ class UserLoginView(APIView):
         }, status.HTTP_200_OK)
 
 
-class ProfileManagementView(generics.RetrievalUpdateAPIView):
+class ProfileManagementView(generics.RetrieveUpdateAPIView):
     serialzer_class = UserSerialzer
     permission_classes = [IsAuthenticated]
 

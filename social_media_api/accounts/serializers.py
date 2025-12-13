@@ -1,5 +1,5 @@
-from rest_framework import serialzers
-from django.contrib.auth.password_validation import validated_password
+from rest_framework import serializers
+from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from django.contrib.auth import get_user_model
@@ -11,7 +11,7 @@ class UserSerialzer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email', 'first_name', 'last_name')
         read_only_fields = ('username', 'email')
 
-class UserRegistrationSerializer(serialzers.ModelSerializer):
+class UserRegistrationSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(style={'input_type' :'password'}, write_only=True)
     
 
@@ -29,7 +29,7 @@ class UserRegistrationSerializer(serialzers.ModelSerializer):
     def validate(self, data):
         if data['password'] != data['password2']:
             raise serialzers.ValidationError({"password": "Password fields didn't match."})
-        validated_password(data['password'])
+        validate_password(data['password'])
         return data
 
 
@@ -44,7 +44,7 @@ class UserRegistrationSerializer(serialzers.ModelSerializer):
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
-    password = serializers.Charfield(required=True , write_only=True)
+    password = serializers.CharField(required=True , write_only=True)
     # serializers.CharField()
 
     def validate(self, data):
