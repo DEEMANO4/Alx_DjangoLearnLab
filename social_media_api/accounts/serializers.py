@@ -23,7 +23,7 @@ class UserRegistrationSerializer(serialzers.ModelSerializer):
         }
 
     def get_token(self, obj):
-        token, created = Token.objects.get_or_create(user=obj)
+        token, created = Token.objects.create(user=obj)
         return token.key
 
     def validate(self, data):
