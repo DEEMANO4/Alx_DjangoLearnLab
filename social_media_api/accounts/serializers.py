@@ -44,7 +44,7 @@ class UserRegistrationSerializer(serialzers.ModelSerializer):
 
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(required= True)
-    password = serializers.CharField(required= True, write_only= True)
+    password = serializers.Charfielf(required=True , write_only=True)
 
     def validate(self, data):
         user = authenticate(**data)
