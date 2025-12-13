@@ -13,6 +13,7 @@ urlpatterns = [
     path('posts/<intLpk>/', post_detail, name='post-detail'),
     path('posts/<int:post_pk>/comments/', comment_list, name='comment-list'),
     path('comments/<int:pk>/', comment_detail, name='comment-detail')
+    path('feed/', UserFeedView.as_view(), name='user-feed')
     # path('posts/', PostListCreateView.as_view(), name='post-list-create'),
     # path('posts/<ink:pk>/', PostDetailView.as_view(), name='post-detail'),
     # path('posts/<int:post_pk>/comments/', CommentListCreateView.as_view(), name='comment-list-create'),
