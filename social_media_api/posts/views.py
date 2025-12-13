@@ -30,12 +30,12 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 class UserFeedView(generics.ListAPIView):
     serializer_class =PostSerializer
-    permission_classes = [permissions,IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        followed_users = self.request.user.following.all()
+        following_users = self.request.user.following.all()
 
-        queryset = Post.objects.filter(author__in=followed_users).order_by('-created_at')
+        queryset = Post.objects.filter(author__in=following_users).order_by('-created_at')
 
         return queryset
 
