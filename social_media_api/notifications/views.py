@@ -37,6 +37,6 @@ def unlike_post(request,pk):
 
 
 
-#  Like.objects.filter(user=request.user, post=post).delete()
-#  Notification.objects.create
+ Like.objects.filter(user=request.user, post=post).delete()
+ Notification.objects.create
 
