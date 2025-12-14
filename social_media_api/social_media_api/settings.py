@@ -33,7 +33,7 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_SSL_REDIRECT = True
 
 #PORT
-
+#STATIC_ROOT
 
 # Application definition
 
