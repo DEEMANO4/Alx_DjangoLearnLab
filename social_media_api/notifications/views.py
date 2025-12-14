@@ -7,7 +7,7 @@ from .models import Post, Like, Notification
 @login_required
 def like_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    like, created = Like.objects.get_orcreate(user=request.user, post=post)
+    like, created = Like.objects.get_or_create(user=request.user, post=post)
 
     if created and post.author != request.user:
         Notification.objects.create(
