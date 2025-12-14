@@ -33,3 +33,9 @@ def unlike_post(request,pk):
     ).delete()
 
     return redirect(request.META.get('HTTP_REFERER', 'home'))
+
+
+
+#  Like.objects.filter(user=request.user, post=post).delete()
+#  Notification.objects.create
+
