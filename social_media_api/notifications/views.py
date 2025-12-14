@@ -36,5 +36,5 @@ def unlike_post(request,pk):
     return redirect(request.META.get('HTTP_REFERER', 'home'))
 
 
-
+# generics.get_object_or_404(Post, pk=pk)
 
