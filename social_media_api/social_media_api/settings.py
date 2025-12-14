@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-x=_^apz3)4v!t9#q3299ksw&%!vr#ow154vfn_m&zd)wmouhr%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.postapp.com', 'postapp.com', '127.0.0.1', '[::1]',]
+ALLOWED_HOSTS = ['www.postapp.com', 'postapp.com', '127.0.0.1', '[::1]']
 
 
 # Application definition
