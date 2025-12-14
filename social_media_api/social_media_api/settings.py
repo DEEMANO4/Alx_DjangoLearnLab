@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-x=_^apz3)4v!t9#q3299ksw&%!vr#ow154vfn_m&zd)wmouhr%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.postapp.com', 'postapp.com', '127.0.0.1', '[::1]',]
 
 
 # Application definition
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'accounts',
     'rest_framework.authtoken',
-    'posts'
+    'posts',
     'notifications'
 ]
 

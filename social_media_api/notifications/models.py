@@ -5,7 +5,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 # Create your models here.
 
 class Notification(models.Model):
-    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=True, related_name='notifications', 
+    recipient = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='notifications', 
     help_text='The user designated to receive the notification.')
     verb = models.CharField(
         max_length=255, help_text='A short description of the action (e.g "commented", "liked", "followed")'
@@ -20,7 +20,7 @@ class Notification(models.Model):
 
     target_content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     target_object_id = models.PositiveIntegerField()
-    target = GenericForeignKey('target_content_type,', 'target_object_id')
+    target = GenericForeignKey('target_content_type', 'target_object_id')
 
     class Meta:
         ordering = ['-timestamp']
