@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics, status
+from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
@@ -75,7 +75,7 @@ class FollowUserView(generics.GenericAPIView):
             "detail": f"You are now following {target_user.username}."
         },status=status.HTTP_200_OK)
 
-class UnfollowUserView(generics.GenericAPIView):
+class UnFollowUserView(generics.GenericAPIView):
     queryset = User.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
@@ -83,12 +83,12 @@ class UnfollowUserView(generics.GenericAPIView):
         target_user = self.get_object()
         current_user = request.user
 
-    if current_user == target_user:
-        return Response({"detail": "You cannot unfollow yourself."}, status.HTTP_400_BAD_REQUEST)
+        if current_user == target_user:
+            return Response({"detail": "You cannot unfollow yourself."}, status.HTTP_400_BAD_REQUEST)
 
-    current_user.following.remove(target_user)
-    return Response({"detail": f"You have unfollowed {target_user.username}."}, 
-    status=status.HTTP_200_OK)
+        current_user.following.remove(target_user)
+        return Response({"detail": f"You have unfollowed {target_user.username}."}, 
+        status=status.HTTP_200_OK)
 
 
 # CustomUser.objects.all()

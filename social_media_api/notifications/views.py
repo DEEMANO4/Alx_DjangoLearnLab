@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
-from posts.models import Post, Like
-from .models import Notification
+from .models import Post, Like, Notification
+
 
 # Create y our views here 
 @login_required
@@ -37,6 +37,4 @@ def unlike_post(request,pk):
 
 
 
- Like.objects.filter(user=request.user, post=post).delete()
- Notification.objects.create
 
