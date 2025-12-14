@@ -1,13 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
-from .models import Post, Like, Notification
+from posts.models import Post, Like
+from .models import Notification
 
 # Create y our views here 
 @login_required
 def like_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    like, created = Like.objects.get_or_create(user=request.user, post=post)
+    Like, created = Like.objects.get_or_create(user=request.user, post=post)
 
     if created and post.author != request.user:
         Notification.objects.create(
